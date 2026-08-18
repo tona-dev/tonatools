@@ -18,7 +18,7 @@
     "commands": [
       {
         "command": "tonatools.filesystem.cfn",
-        "title": "Copy File Name",
+        "title": "Copy file name",
         "category": "File"
       },
       {
