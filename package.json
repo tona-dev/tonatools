@@ -1,0 +1,81 @@
+{
+  "name": "tonatools",
+  "displayName": "tonatools",
+  "description": "Fast palette commands for the typing developer",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.125.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tonatools.filesystem.cfn",
+        "title": "Copy File Name",
+        "category": "File"
+      },
+      {
+        "command": "tonatools.git.copyremoteurl",
+        "title": "Copy file location in remote url",
+        "category": "Git"
+      }
+    ],
+    "configuration": {
+      "title": "tonatools",
+      "properties": {
+        "tonatools.git.remoteTemplates": {
+          "type": "object",
+          "default": {},
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "markdownDescription": "URL of a file. Placeholders: `${host}`, `${path}` (e.g. `owner/repo`), `${branch}`, `${file}`."
+              },
+              "line": {
+                "type": "string",
+                "markdownDescription": "Anchor for a single line. Placeholder: `${start}`."
+              },
+              "lineRange": {
+                "type": "string",
+                "markdownDescription": "Anchor for a range of lines. Placeholders: `${start}`, `${end}`."
+              }
+            },
+            "additionalProperties": false
+          },
+          "markdownDescription": "URL templates per git remote host, used by `Git: Copy file location in remote url`.\n\n`github.com`, `gitlab.com` and `bitbucket.org` are built in. Keys you leave out fall back individually, so overriding `file` for a self-hosted instance still inherits that host's line anchors. Use `*` as the host to override the fallback for unrecognised hosts.\n\n```json\n{\n  \"git.example.com\": {\n    \"file\": \"https://${host}/${path}/-/blob/${branch}/${file}\",\n    \"line\": \"#L${start}\",\n    \"lineRange\": \"#L${start}-${end}\"\n  }\n}\n```"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.125.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "typescript-eslint": "^8.61.1",
+    "eslint": "^10.5.0",
+    "typescript": "^6.0.3",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  }
+}
