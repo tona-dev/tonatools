@@ -1,14 +1,58 @@
-trigger: none
+# Publishes tonatools to the Visual Studio Marketplace.
+#
+# Auth uses Workload Identity Federation (no PATs — global PATs retire 2026-12-01):
+#   service connection 'marketplace-publish-wif'
+#     -> user-assigned managed identity 'id-tonatools-marketplace-publish'
+#     -> authorized as Contributor on Marketplace publisher 'tonadev'
+#
+# Triggers on version tags only, e.g.  git tag v0.0.1 && git push --tags
+
+trigger:
+  tags:
+    include:
+      - v*
+
+pr: none
 
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  NODE_VERSION: '20.x'
+  VSIX_PATH: '$(Build.ArtifactStagingDirectory)/tonatools.vsix'
+
 steps:
+  - task: NodeTool@0
+    displayName: 'Use Node $(NODE_VERSION)'
+    inputs:
+      versionSpec: $(NODE_VERSION)
+
+  - script: npm install -g pnpm @vscode/vsce
+    displayName: 'Install pnpm and vsce'
+
+  - script: pnpm install --frozen-lockfile
+    displayName: 'Install dependencies'
+
+  - script: pnpm run compile
+    displayName: 'Compile'
+
+  - script: pnpm run lint
+    displayName: 'Lint'
+
+  # --no-dependencies: this extension ships no runtime deps, and vsce cannot
+  # traverse pnpm's symlinked node_modules layout.
+  - script: vsce package --no-dependencies -o "$(VSIX_PATH)"
+    displayName: 'Package .vsix'
+
+  - publish: $(VSIX_PATH)
+    artifact: vsix
+    displayName: 'Publish .vsix as build artifact'
+
   - task: AzureCLI@2
-    displayName: 'Retrieve managed identity Marketplace profile ID'
+    displayName: 'Publish to VS Marketplace'
     inputs:
       azureSubscription: 'marketplace-publish-wif'
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        az rest -u https://app.vssps.visualstudio.com/_apis/profile/profiles/me --resource 499b84ac-1321-427f-aa17-267ca6975798
+        vsce publish --azure-credential --packagePath "$(VSIX_PATH)"
