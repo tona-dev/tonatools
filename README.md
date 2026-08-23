@@ -1,71 +1,68 @@
-# tonatools README
+# tonatools
 
-This is the README for your extension "tonatools". After writing up a brief description, we recommend including the following sections.
+This is just a ton-a-tools for the anxious typer.
 
-## Features
+A set of Command Palette commands that get data out of the file you're already looking at.
+Sometimes you are just too deep in the `cmd + p` flow and you need to get some data from the directory, file naem, location, share file in remote or something else. You
+just wish you could `pwd`, `ls` the current file (actually I'm going to explore this idea). This is an effort to cater to those needs.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Install
 
-For example if there is an image subfolder under your extension project workspace:
+- **From the Marketplace:** search for **tonatools** in the Extensions view, or run
+  `ext install tonadev.tonatools` in the Quick Open bar.
+- **From a `.vsix`:** run `pnpm vsce package`, then **Extensions: Install from VSIX…**.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Commands
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+| Command                                  | What it does                                                                                                                                                                                |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `File: Copy current workspace directory` | Copies the active file's folder, relative to the workspace root — `src/git/commands`                                                                                                        |
+| `File: Copy file name`                   | Copies the active file's name — `RemoteUrl.ts`                                                                                                                                              |
+| `Git: Copy file location in remote url`  | Copies a link to the active file on its remote, on the branch you're on, anchored to your selection — `https://github.com/tona-dev/tonatools/blob/main/src/git/domain/RemoteUrl.ts#L42-L50` |
 
-## Requirements
+These are palette-first — no shortcuts ship with the extension. If you reach for one often enough,
+bind it yourself through **Preferences: Open Keyboard Shortcuts** and search for the command name.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Settings
 
-## Extension Settings
+### `tonatools.git.remoteTemplates`
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+URL templates per git remote host, used by `Git: Copy file location in remote url`.
 
-For example:
+`github.com`, `gitlab.com` and `bitbucket.org` are built in, and any other host falls back to the
+GitHub-shaped URL. Point this setting at your own hosts when that guess is wrong, like a
+self-hosted GitLab:
 
-This extension contributes the following settings:
+```json
+{
+  "tonatools.git.remoteTemplates": {
+    "git.example.com": {
+      "file": "https://${host}/${path}/-/blob/${branch}/${file}",
+      "lineRange": "#L${start}-${end}"
+    }
+  }
+}
+```
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Each host maps to up to three keys:
 
-## Known Issues
+| Key         | What it builds                  | Placeholders                                                     |
+| ----------- | ------------------------------- | ---------------------------------------------------------------- |
+| `file`      | The URL of the file itself      | `${host}`, `${path}` (e.g. `owner/repo`), `${branch}`, `${file}` |
+| `line`      | The anchor for a single line    | `${start}`                                                       |
+| `lineRange` | The anchor for a range of lines | `${start}`, `${end}`                                             |
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Keys resolve one by one, most specific first: your entry for that host, then the built-in for that
+host, then your `*` entry, then the default. So you only have to write the keys that differ — the
+example above sets `file` and `lineRange`, and leaves `line` out because the default `#L${start}`
+is already what GitLab wants.
 
-## Release Notes
+Use `*` as the host to change what every unrecognised host gets.
 
-Users appreciate release notes as you update your extension.
+## Changelog
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+See [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Thanks for checking out my first VS Code extension.

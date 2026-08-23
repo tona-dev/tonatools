@@ -57,7 +57,7 @@
             },
             "additionalProperties": false
           },
-          "markdownDescription": "URL templates per git remote host, used by `Git: Copy file location in remote url`.\n\n`github.com`, `gitlab.com` and `bitbucket.org` are built in. Keys you leave out fall back individually, so overriding `file` for a self-hosted instance still inherits that host's line anchors. Use `*` as the host to override the fallback for unrecognised hosts.\n\n```json\n{\n  \"git.example.com\": {\n    \"file\": \"https://${host}/${path}/-/blob/${branch}/${file}\",\n    \"line\": \"#L${start}\",\n    \"lineRange\": \"#L${start}-${end}\"\n  }\n}\n```"
+          "markdownDescription": "URL templates per git remote host, used by `Git: Copy file location in remote url`.\n\n`github.com`, `gitlab.com` and `bitbucket.org` are built in. Keys you leave out fall back individually, most specific first: your entry for the host, then the built-in for that host, then your `*` entry, then the default — so you only write the keys that differ. Use `*` as the host to override the fallback for unrecognised hosts.\n\n```json\n{\n  \"git.example.com\": {\n    \"file\": \"https://${host}/${path}/-/blob/${branch}/${file}\",\n    \"line\": \"#L${start}\",\n    \"lineRange\": \"#L${start}-${end}\"\n  }\n}\n```"
         }
       }
     }
