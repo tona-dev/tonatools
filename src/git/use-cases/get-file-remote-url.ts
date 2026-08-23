@@ -1,4 +1,5 @@
 import type { Uri } from "vscode";
+import { toRelativePath } from "../../core/domain/FilePath";
 import type { UseCaseResult } from "../../core/domain/UseCaseResult";
 import type {
   API as GitApi,
@@ -8,7 +9,6 @@ import type {
 import {
   buildFileUrl,
   parseRemoteUrl,
-  toRepoRelativePath,
   type LineRange,
   type RemoteTemplate,
 } from "../domain/RemoteUrl";
@@ -56,11 +56,10 @@ export function getFileRemoteUrl(
     return { ok: false, reason: "unsupported-remote" };
   }
 
-  const relativePath = toRepoRelativePath(
-    repository.rootUri.fsPath,
-    file.fsPath,
-  );
+  const relativePath = toRelativePath(repository.rootUri.fsPath, file.fsPath);
 
+  // Falsy covers both undefined (outside the repo) and "" (the file *is* the
+  // repo root, which cannot happen for a file) — same behaviour as before.
   if (!relativePath) {
     return { ok: false, reason: "file-outside-repository" };
   }

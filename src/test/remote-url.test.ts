@@ -1,9 +1,5 @@
 import * as assert from "assert";
-import {
-  buildFileUrl,
-  parseRemoteUrl,
-  toRepoRelativePath,
-} from "../git/domain/RemoteUrl";
+import { buildFileUrl, parseRemoteUrl } from "../git/domain/RemoteUrl";
 
 suite("parseRemoteUrl", () => {
   test("reads scp-like ssh remotes", () => {
@@ -164,28 +160,5 @@ suite("buildFileUrl", () => {
       buildFileUrl(github, { branch: "main", file: "docs/a#b.md" }),
       "https://github.com/martiuh/tonatools/blob/main/docs/a%23b.md",
     );
-  });
-});
-
-suite("toRepoRelativePath", () => {
-  const root = "/Users/martiuh/tonadevsantos/tonatools";
-
-  test("returns a forward-slash path for a nested file", () => {
-    assert.strictEqual(
-      toRepoRelativePath(root, `${root}/src/git/domain/RemoteUrl.ts`),
-      "src/git/domain/RemoteUrl.ts",
-    );
-  });
-
-  test("handles a file directly at the root", () => {
-    assert.strictEqual(toRepoRelativePath(root, `${root}/package.json`), "package.json");
-  });
-
-  test("declines a file outside the repository", () => {
-    assert.strictEqual(
-      toRepoRelativePath(root, "/Users/martiuh/elsewhere/notes.md"),
-      undefined,
-    );
-    assert.strictEqual(toRepoRelativePath(root, root), undefined);
   });
 });

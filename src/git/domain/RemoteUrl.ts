@@ -3,8 +3,6 @@
  * unit tested on its own.
  */
 
-import path from "node:path";
-
 export interface RemoteLocation {
   /** Lowercased hostname, without userinfo or port. */
   readonly host: string;
@@ -131,24 +129,6 @@ export function buildFileUrl(
     .replaceAll("${path}", location.path)
     .replaceAll("${branch}", encodePathSegments(file.branch))
     .replaceAll("${file}", encodePathSegments(file.file));
-}
-
-/**
- * The file's path relative to the repository root, with forward slashes.
- * Undefined when the file lies outside the root — a symlinked or otherwise
- * unrelated file would otherwise produce a confidently wrong link.
- */
-export function toRepoRelativePath(
-  rootFsPath: string,
-  fileFsPath: string,
-): string | undefined {
-  const relative = path.relative(rootFsPath, fileFsPath).replaceAll("\\", "/");
-
-  if (relative === "" || relative.startsWith("../") || path.isAbsolute(relative)) {
-    return undefined;
-  }
-
-  return relative;
 }
 
 function resolveTemplate(
