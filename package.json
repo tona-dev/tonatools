@@ -3,6 +3,15 @@
   "displayName": "tonatools",
   "publisher": "tonadev",
   "description": "Fast palette commands for the typing developer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tona-dev/tonatools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tona-dev/tonatools/issues"
+  },
+  "homepage": "https://github.com/tona-dev/tonatools#readme",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.125.0"
@@ -57,7 +66,7 @@
             },
             "additionalProperties": false
           },
-          "markdownDescription": "URL templates per git remote host, used by `Git: Copy file location in remote url`.\n\n`github.com`, `gitlab.com` and `bitbucket.org` are built in. Keys you leave out fall back individually, most specific first: your entry for the host, then the built-in for that host, then your `*` entry, then the default — so you only write the keys that differ. Use `*` as the host to override the fallback for unrecognised hosts.\n\n```json\n{\n  \"git.example.com\": {\n    \"file\": \"https://${host}/${path}/-/blob/${branch}/${file}\",\n    \"line\": \"#L${start}\",\n    \"lineRange\": \"#L${start}-${end}\"\n  }\n}\n```"
+          "markdownDescription": "URL templates per git remote host, used by `Git: Copy file location in remote url`.\n\n`github.com`, `gitlab.com` and `bitbucket.org` are built in. Keys you leave out fall back individually, most specific first: your entry for the host, then the built-in for that host, then your `*` entry, then the default \u2014 so you only write the keys that differ. Use `*` as the host to override the fallback for unrecognised hosts.\n\n```json\n{\n  \"git.example.com\": {\n    \"file\": \"https://${host}/${path}/-/blob/${branch}/${file}\",\n    \"line\": \"#L${start}\",\n    \"lineRange\": \"#L${start}-${end}\"\n  }\n}\n```"
         }
       }
     }
