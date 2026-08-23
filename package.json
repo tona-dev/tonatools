@@ -1,6 +1,7 @@
 {
   "name": "tonatools",
   "displayName": "tonatools",
+  "publisher": "tonadev",
   "description": "Fast palette commands for the typing developer",
   "version": "0.0.1",
   "engines": {
@@ -19,6 +20,11 @@
       {
         "command": "tonatools.filesystem.cfn",
         "title": "Copy file name",
+        "category": "File"
+      },
+      {
+        "command": "tonatools.filesystem.cfd",
+        "title": "Copy current workspace directory",
         "category": "File"
       },
       {
