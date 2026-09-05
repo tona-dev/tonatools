@@ -87,7 +87,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "git:push": "scripts "
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -102,6 +103,9 @@
   "overrides": {
     "diff": "^8.0.4",
     "serialize-javascript": "^7.0.6"
+  },
+  "bumpy": {
+    "skipNpmPublish": true
   },
   "dependencies": {
     "@varlock/bumpy": "^1.18.1"

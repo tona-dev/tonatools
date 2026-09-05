@@ -13,3 +13,12 @@ This is a VSCodex extension following a feature slice approach.
 - Use bumpy to:
   - Update CHANGELOG
   - Version bump
+  - Do not use `publish` command
+
+## Tagging
+
+- For tag names use `v0.0.0` as template, then use package.json version (avoid repeated)
+
+## Creating a release
+
+- Name `v0.0.0 {optional: Human title}"
