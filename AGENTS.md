@@ -10,3 +10,6 @@ This is a VSCodex extension following a feature slice approach.
 - Spot shared abstractions over creating new code
 - Every feature needs to be documented in README.md
 - Tests should pass
+- Use bumpy to:
+  - Update CHANGELOG
+  - Version bump

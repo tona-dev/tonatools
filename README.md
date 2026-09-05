@@ -19,6 +19,8 @@ just wish you could `pwd`, `ls` the current file (actually I'm going to explore 
 | `File: Copy current workspace directory` | Copies the active file's folder, relative to the workspace root — `src/git/commands`                                                                                                        |
 | `File: Copy file name`                   | Copies the active file's name — `RemoteUrl.ts`                                                                                                                                              |
 | `Git: Copy file location in remote url`  | Copies a link to the active file on its remote, on the branch you're on, anchored to your selection — `https://github.com/tona-dev/tonatools/blob/main/src/git/domain/RemoteUrl.ts#L42-L50` |
+| `Open: Project directory`                | Opens the project or workspace directory in your system file manager (Finder on macOS, Nautilus on Linux, File Explorer on Windows)                                                         |
+| `Open: File directory`                   | Opens the active file's folder in your system file manager (Finder on macOS, Nautilus on Linux, File Explorer on Windows)                                                                   |
 
 These are palette-first — no shortcuts ship with the extension. If you reach for one often enough,
 bind it yourself through **Preferences: Open Keyboard Shortcuts** and search for the command name.

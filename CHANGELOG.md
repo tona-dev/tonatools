@@ -4,6 +4,19 @@ All notable changes to the "tonatools" extension will be documented in this file
 
 This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
+
+## 0.2.0
+<sub>2026-09-05</sub>
+
+- *(minor)* Add `Open` commands to reveal the file directory or the projects directory
+
+## [0.1.0] - 2026-09-05
+
+### Added
+
+- `Open: Project directory` — reveals the project or workspace directory in your system file manager (Finder, Nautilus, Explorer).
+- `Open: File directory` — reveals the directory containing the active file in your system file manager (Finder, Nautilus, Explorer).
+
 ## [0.0.1] - 2026-08-23
 
 ### Added
