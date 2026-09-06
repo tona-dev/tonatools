@@ -9,6 +9,10 @@ out/test/**
 **/*.mts
 **/*.map
 
+# Master brand art. Only the 256x256 icon ships.
+images/logo.png
+images/logo-128x128.png
+
 # Build and editor config.
 .vscode/**
 .vscode-test/**

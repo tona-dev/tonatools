@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/tona-dev/tonatools#readme",
   "version": "0.2.0",
+  "icon": "images/logo-256x256.png",
   "engines": {
     "vscode": "^1.125.0"
   },
