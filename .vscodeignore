@@ -1,11 +1,37 @@
+# The .vsix should contain out/ (minus tests), package.json and the docs —
+# nothing else. Anything listed here is either source, dev tooling or secrets.
+
+# Sources and build scripts — only the compiled output ships.
+src/**
+scripts/**
+out/test/**
+**/*.ts
+**/*.mts
+**/*.map
+
+# Build and editor config.
 .vscode/**
 .vscode-test/**
-src/**
-.gitignore
-.yarnrc
-vsc-extension-quickstart.md
+**/.vscode-test.*
 **/tsconfig.json
 **/eslint.config.mjs
-**/*.map
-**/*.ts
-**/.vscode-test.*
+.gitignore
+.npmrc
+.yarnrc
+pnpm-lock.yaml
+azure-pipelines.yml
+vsc-extension-quickstart.md
+
+# Agent/tooling directories. .claude/skills/ holds symlinks to directories,
+# which crash vsce's secret scanner with EISDIR if they are packaged.
+.agents/**
+.claude/**
+.gemini/**
+.bumpy/**
+skills-lock.json
+AGENTS.md
+
+# Never ship secrets.
+.env
+**/*.pem
+**/*.key
