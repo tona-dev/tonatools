@@ -1,0 +1,20 @@
+{
+    // Build scripts are never compiled — node runs the .mts files directly and
+    // strips the types. This config exists so the editor and `pnpm typecheck`
+    // check them, since the root tsconfig only covers src/.
+    "include": [
+        "."
+    ],
+    "compilerOptions": {
+        "module": "NodeNext",
+        "target": "ES2022",
+        "lib": [
+            "ES2022"
+        ],
+        "types": [
+            "node"
+        ],
+        "strict": true,
+        "noEmit": true
+    }
+}

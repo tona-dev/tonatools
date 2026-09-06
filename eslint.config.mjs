@@ -2,9 +2,10 @@ import typescriptEslint from "typescript-eslint";
 
 export default [{
     // Vendored third-party types — not ours to restyle.
-    ignores: ["src/core/repositories/git.d.ts"],
+    // scripts/ is authored in .mts only; any .js/.mjs there is stray build output.
+    ignores: ["src/core/repositories/git.d.ts", "scripts/*.js", "scripts/*.mjs"],
 }, {
-    files: ["**/*.ts"],
+    files: ["**/*.ts", "**/*.mts"],
 }, {
     plugins: {
         "@typescript-eslint": typescriptEslint.plugin,

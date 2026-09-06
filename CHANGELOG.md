@@ -10,14 +10,16 @@ This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
 - *(minor)* Add `Open` commands to reveal the file directory or the projects directory
 
-## [0.1.0] - 2026-09-05
+## 0.1.0
+<sub>2026-09-05</sub>
 
 ### Added
 
 - `Open: Project directory` — reveals the project or workspace directory in your system file manager (Finder, Nautilus, Explorer).
 - `Open: File directory` — reveals the directory containing the active file in your system file manager (Finder, Nautilus, Explorer).
 
-## [0.0.1] - 2026-08-23
+## 0.0.1
+<sub>2026-08-23</sub>
 
 ### Added
 

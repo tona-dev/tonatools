@@ -1,4 +1,9 @@
 {
+    // Only the extension is compiled. Files in scripts/ are run directly by
+    // node (which strips their types) and are outside rootDir.
+    "include": [
+        "src"
+    ],
     "compilerOptions": {
         "module": "Node16",
         "target": "ES2022",

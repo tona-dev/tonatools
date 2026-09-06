@@ -85,10 +85,11 @@
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
-    "lint": "eslint src",
+    "pretest": "pnpm run compile && pnpm run typecheck:scripts && pnpm run lint",
+    "typecheck:scripts": "tsc -p scripts",
+    "lint": "eslint src scripts",
     "test": "vscode-test",
-    "git:push": "scripts "
+    "release": "node scripts/release.mts"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
