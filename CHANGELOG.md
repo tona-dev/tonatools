@@ -6,6 +6,13 @@ This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
 
 
+
+## 0.3.1
+<sub>2026-09-07</sub>
+
+- *(patch)*
+  - tonatools: update task to UseNode@1
+
 ## 0.3.0
 <sub>2026-09-07</sub>
 
