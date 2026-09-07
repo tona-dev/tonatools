@@ -5,6 +5,12 @@ All notable changes to the "tonatools" extension will be documented in this file
 This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
 
+
+## 0.3.0
+<sub>2026-09-07</sub>
+
+- *(minor)* Add package logo
+
 ## 0.2.0
 <sub>2026-09-05</sub>
 
