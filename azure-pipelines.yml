@@ -22,10 +22,10 @@ variables:
   VSIX_PATH: '$(Build.ArtifactStagingDirectory)/tonatools.vsix'
 
 steps:
-  - task: NodeTool@0
+  - task: UseNode@1
     displayName: 'Use Node $(NODE_VERSION)'
     inputs:
-      versionSpec: $(NODE_VERSION)
+      version: $(NODE_VERSION)
 
   - script: npm install -g pnpm @vscode/vsce
     displayName: 'Install pnpm and vsce'
