@@ -51,6 +51,11 @@
         "command": "tonatools.open.filedirectory",
         "title": "File directory",
         "category": "Open"
+      },
+      {
+        "command": "tonatools.search.indirectory",
+        "title": "In directory",
+        "category": "Search"
       }
     ],
     "configuration": {
