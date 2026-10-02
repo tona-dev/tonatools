@@ -4,6 +4,12 @@ All notable changes to the "tonatools" extension will be documented in this file
 
 This project adheres to [Keep a Changelog](http://keepachangelog.com/).
 
+## 0.4.0
+
+<sub>2026-10-02</sub>
+
+- _(minor)_ Add `Search: In directory` to search within the current file's directory or any of its parents
+
 ## 0.3.1
 
 <sub>2026-09-07</sub>
